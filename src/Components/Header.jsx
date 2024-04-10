@@ -9,11 +9,11 @@ const Header = () => {
   return (
     <>
       <Navbar className="bg-gray-800 mx-20 sm:mx-24">
-        <Container className="px-3">
-          <Link className="text-white sm:text-2xl md:text-3xl hover:font-bold transition-all font-sans py-1">
+        <Container>
+          <Link className="text-white sm:text-2xl md:text-3xl px-2 hover:font-bold transition-all font-sans py-1">
             Shopping Cart
           </Link>
-          <div className="text-white">
+          <div className="text-white px-2">
             <span>
               <FontAwesomeIcon icon={faShoppingCart} size="xl" />
             </span>

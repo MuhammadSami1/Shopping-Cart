@@ -13,13 +13,15 @@ const Cards = ({ title, image }) => {
         />
         <Card.Body>
           <Card.Title>
-            <h1 className="truncate mt-1 text-center text-lg font-medium text-gray-900">
+            <h1 className="truncate mt-1 text-center text-lg font-medium text-gray-900 ">
               {title}
             </h1>
           </Card.Title>
-          <Button variant="primary" className="">
-            Add to Cart
-          </Button>
+          <div className="text-center">
+            <Button variant="primary" className="mt-3">
+              Add to Cart
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </>

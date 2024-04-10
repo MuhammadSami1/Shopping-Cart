@@ -1,7 +1,7 @@
 import HeroSection from "../Components/HeroSection";
 import { useDispatch, useSelector } from "react-redux";
 import { showUser } from "../features/getUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "../Components/Carousel";
 import Cards from "../Components/Cards";
@@ -9,6 +9,8 @@ import Cards from "../Components/Cards";
 const Home = () => {
   const { users, loading, error } = useSelector((state) => state.app);
   const dispatch = useDispatch();
+
+  const [displayItems, setDisplayItem] = useState(12);
 
   useEffect(() => {
     dispatch(showUser());
@@ -26,19 +28,31 @@ const Home = () => {
     );
   }
 
+  const moreItems = () => {
+    setDisplayItem((prevCount) => prevCount + 10);
+  };
+
   return (
     <div className="sm:mx-24 mx-20">
       <Carousel />
       <HeroSection />
-      <h1 className="py-5 mt-4 text-3xl flex justify-center items-center font-bold bg-white ">
+      <h1 className="py-5 mt-4 text-2xl sm:text-3xl lg:text-5xl flex justify-center items-center font-bold bg-white ">
         Restaurants in Lahore
       </h1>
       <div className="flex justify-center items-center flex-wrap gap-5 py-5">
-        {users.map((value) => (
+        {users.slice(0, displayItems).map((value) => (
           <Link key={value.id}>
             <Cards title={value.title} image={value.image} />
           </Link>
         ))}
+        {displayItems < users.length && (
+          <button
+            className="bg-black text-white px-4 py-2 rounded-xl"
+            onClick={moreItems}
+          >
+            More items
+          </button>
+        )}
       </div>
     </div>
   );
